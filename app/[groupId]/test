@@ -1,0 +1,48 @@
+.
+├── _components
+│   ├── comment-list
+│   │   ├── comment-card.tsx
+│   │   ├── comment-input.tsx
+│   │   └── index.tsx
+│   ├── create-post-modal
+│   │   └── index.tsx
+│   ├── group-navbar.tsx
+│   ├── post-card.tsx
+│   └── post-modal.tsx
+├── about
+│   ├── _components
+│   │   └── join-group-page.tsx
+│   └── page.tsx
+├── classroom
+│   ├── [courseId]
+│   │   ├── _components
+│   │   │   ├── curriculum.tsx
+│   │   │   └── lesson-view.tsx
+│   │   ├── edit
+│   │   │   ├── _components
+│   │   │   │   ├── lesson-editor-view.tsx
+│   │   │   │   └── module-name-editor.tsx
+│   │   │   └── page.tsx
+│   │   └── page.tsx
+│   ├── _components
+│   │   └── course-list
+│   │       ├── course-card.tsx
+│   │       └── index.tsx
+│   ├── create
+│   │   └── page.tsx
+│   └── page.tsx
+├── edit
+│   ├── _components
+│   │   ├── description-editor.tsx
+│   │   └── name-editor.tsx
+│   └── page.tsx
+├── layout.tsx
+├── members
+│   ├── _components
+│   │   ├── add-member.tsx
+│   │   └── member-card.tsx
+│   └── page.tsx
+├── page.tsx
+└── test
+
+18 directories, 28 files
