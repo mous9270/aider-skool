@@ -12,7 +12,15 @@ interface ClassroomProps {
 };
 
 const ClassroomPage = ({ params }: ClassroomProps) => {
-    const group = useQuery(api.groups.get, { id: params.groupId })
+    const group = useQuery(api.groups.get, { id: params.groupId });
+    const currentUser = useQuery(api.users.currentUser, {});
+    const members = useQuery(api.groups.getMembers, { id: params.groupId });
+
+    const isAuthorized = members?.some(member => member._id === currentUser?._id);
+
+    if (!isAuthorized) {
+        return <div>You do not have access to this group.</div>;
+    }
 //    if (!group?.endsOn || group?.endsOn < Date.now()) {
 //        return <div>Subscription expired.</div>;
 //    }
