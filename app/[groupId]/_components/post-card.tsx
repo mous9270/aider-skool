@@ -72,7 +72,7 @@ export const PostCard = ({
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                         <Avatar className="h-10 w-10">
-                            <AvatarImage src={post.author.profileUrl} />
+                            <AvatarImage src={post.author.profileUrl || '/default-avatar.png'} />
                             <AvatarFallback className="bg-gradient-to-r from-blue-500 to-blue-600 text-white flex items-center justify-center text-base font-medium">
                                 {post.author.name.charAt(0).toUpperCase()}
                             </AvatarFallback>

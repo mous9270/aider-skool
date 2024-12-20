@@ -33,7 +33,7 @@ export const CommentList = ({ post }: CommentListProps) => {
             <ScrollArea className="max-h-[250px] border px-2">
                 <div className="flex flex-col space-y-8">
                     {comments.map((comment) => (
-                        <CommentCard key={comment._id} comment={comment} author={post.author} />
+                        <CommentCard key={comment._id} comment={comment} />
                     ))}
                     <div ref={scrollRef} />
                 </div>

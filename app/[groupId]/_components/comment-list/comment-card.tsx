@@ -8,10 +8,9 @@ import { Trash2 } from "lucide-react";
 
 interface CommentCardProps {
     comment: Doc<"comments">;
-    author: Doc<"users">;
 }
 
-export const CommentCard = ({ comment, author }: CommentCardProps) => {
+export const CommentCard = ({ comment }: CommentCardProps) => {
     const timeAgo = formatDistanceToNow(comment._creationTime);
     const currentUser = useQuery(api.users.currentUser, {});
     const isOwner = comment.authorId === currentUser?._id;
@@ -33,12 +32,12 @@ export const CommentCard = ({ comment, author }: CommentCardProps) => {
                 </div>
             )}
             <Avatar>
-                <AvatarImage src={author.profileUrl} />
-                <AvatarFallback>{author.name.charAt(0)}</AvatarFallback>
+                <AvatarImage src={comment.author.profileUrl} />
+                <AvatarFallback>{comment.author.name.charAt(0)}</AvatarFallback>
             </Avatar>
             <div>
                 <div className="flex space-x-3">
-                    <p className="font-semibold">{author.name}</p>
+                    <p className="font-semibold">{comment.author.name}</p>
                     <p className="font-normal text-gray-500">{timeAgo}</p>
                 </div>
                 <p>{comment.content}</p>
