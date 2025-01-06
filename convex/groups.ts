@@ -59,14 +59,15 @@ export const list = query({
             throw new Error("Called storeUser without authenticated user");
         }
 
-        const user = await ctx.db
+        let user = await ctx.db
             .query("users")
             .withIndex("by_token", (q) =>
                 q.eq("tokenIdentifier", identity.tokenIdentifier))
             .unique();
 
         if (user === null) {
-            throw new Error("User not stored in database.");
+            // Return empty list if user doesn't exist
+            return [];
         }
 
         const userGroups = await ctx.db
