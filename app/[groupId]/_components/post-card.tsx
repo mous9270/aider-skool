@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Separator } from "@/components/ui/separator";
 import { api } from "@/convex/_generated/api";
 import { Doc } from "@/convex/_generated/dataModel";
@@ -34,6 +34,8 @@ export const PostCard = ({
     const { mutate: like } = useApiMutation(api.likes.add);
     const { mutate: remove } = useApiMutation(api.posts.remove);
 
+    const [isEditing, setIsEditing] = useState(false);
+    
     const handleLike = (e: React.MouseEvent) => {
         e.stopPropagation();
         like({ postId: post._id });
@@ -76,8 +78,22 @@ export const PostCard = ({
                     </div>
                     {isOwner && (
                         <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
-                            <button className="p-2 hover:bg-neutral-100 rounded-full transition-colors">
-                                <PenBox className="w-5 h-5 text-neutral-600" />
+                            <button 
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setIsEditing(!isEditing);
+                                }}
+                                className={cn(
+                                    "p-2 rounded-full transition-colors",
+                                    isEditing 
+                                        ? "bg-blue-100 hover:bg-blue-200" 
+                                        : "hover:bg-neutral-100"
+                                )}
+                            >
+                                <PenBox className={cn(
+                                    "w-5 h-5",
+                                    isEditing ? "text-blue-600" : "text-neutral-600"
+                                )} />
                             </button>
                             <button 
                                 onClick={handleRemove}
@@ -99,10 +115,23 @@ export const PostCard = ({
                     <Content
                         postId={post._id}
                         initialContent={post.content}
-                        editable={isOwner}
+                        editable={isOwner && isEditing}
                         className="text-neutral-700 text-sm"
                     />
                 </ScrollArea>
+                {isEditing && (
+                    <div className="mt-4 flex justify-end">
+                        <button
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                setIsEditing(false);
+                            }}
+                            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                        >
+                            Publish
+                        </button>
+                    </div>
+                )}
             </div>
 
             <Separator />
