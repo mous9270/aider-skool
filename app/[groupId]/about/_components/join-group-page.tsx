@@ -19,9 +19,10 @@ export const About = ({
 }: JoinGroupPageProps) => {
     const group = useQuery(api.groups.get, { id: groupId });
     const currentUser = useQuery(api.users.currentUser, {});
+    const members = useQuery(api.groups.getMembers, { id: groupId });
     const router = useRouter();
 
-    if (group === undefined) {
+    if (group === undefined || members === undefined) {
         return <Loading />;
     }
 
@@ -34,7 +35,8 @@ export const About = ({
         router.push(`/${groupId}/edit`);
     }
 
-    const membersText = group.memberNumber === 1 ? "Member" : "Members";
+    const membersCount = members.length;
+    const membersText = membersCount === 1 ? "1 Member" : `${membersCount} Members`;
 
     return (
         <div className="flex items-start justify-center space-x-12 w-full">
@@ -59,7 +61,12 @@ export const About = ({
                     initialContent={group.description}
                 />
             </div>
-            <AboutSide group={group} currentUser={currentUser} handleEdit={handleEdit} membersText={membersText} />
+            <AboutSide 
+                group={group} 
+                currentUser={currentUser} 
+                handleEdit={handleEdit} 
+                membersText={membersText} 
+            />
         </div>
     );
 }

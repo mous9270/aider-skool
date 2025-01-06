@@ -20,7 +20,7 @@ export const AboutSide = ({
             <h1 className="font-bold text-xl">{group.name}</h1>
             <p className="flex font-light text-xs items-center text-neutral-400 gap-x-2"><Lock className="w-4 h-4" /> Private group</p>
             <p>{group.shortDescription}</p>
-            <p className="text-neutral-400">{group.memberNumber} {membersText}</p>
+            <p className="text-neutral-400">{membersText}</p>
             {currentUser?._id !== group.ownerId && (
                 <Button className="w-full">Join</Button>
             )}
