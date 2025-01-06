@@ -98,3 +98,53 @@ export const addToGroup = mutation({
         })
     },
 });
+
+export const removeFromGroup = mutation({
+    args: {
+        userId: v.id("users"),
+        groupId: v.id("groups"),
+    },
+    handler: async (ctx, { userId, groupId }) => {
+        const identity = await ctx.auth.getUserIdentity();
+        if (!identity) {
+            throw new Error("Called removeFromGroup without authenticated user");
+        }
+
+        const currentUser = await ctx.db
+            .query("users")
+            .withIndex("by_token", (q) =>
+                q.eq("tokenIdentifier", identity.tokenIdentifier))
+            .unique();
+
+        if (!currentUser) {
+            throw new Error("User not found!");
+        }
+
+        const group = await ctx.db.get(groupId);
+
+        if (!group) {
+            throw new Error("Group not found!");
+        }
+
+        if (currentUser._id !== group.ownerId) {
+            throw new Error("User is not the owner of the group!");
+        }
+
+        // Find and delete the userGroup entry
+        const userGroup = await ctx.db
+            .query("userGroups")
+            .filter((q) => 
+                q.and(
+                    q.eq(q.field("userId"), userId),
+                    q.eq(q.field("groupId"), groupId)
+                )
+            )
+            .unique();
+
+        if (!userGroup) {
+            throw new Error("User is not a member of this group!");
+        }
+
+        await ctx.db.delete(userGroup._id);
+    },
+});
