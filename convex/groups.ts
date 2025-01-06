@@ -207,3 +207,41 @@ export const updateSubscriptionById = internalMutation({
         });
     },
 });
+
+export const deleteGroup = mutation({
+    args: { groupId: v.id("groups") },
+    handler: async (ctx, { groupId }) => {
+        const identity = await ctx.auth.getUserIdentity();
+        if (!identity) {
+            throw new Error("Unauthorized");
+        }
+
+        const group = await ctx.db.get(groupId);
+        if (!group) {
+            throw new Error("Group not found");
+        }
+
+        const user = await ctx.db
+            .query("users")
+            .withIndex("by_token", (q) =>
+                q.eq("tokenIdentifier", identity.tokenIdentifier))
+            .unique();
+
+        if (!user || user._id !== group.ownerId) {
+            throw new Error("Not authorized to delete this group");
+        }
+
+        // Delete all userGroups entries for this group
+        const userGroups = await ctx.db
+            .query("userGroups")
+            .withIndex("by_groupId", (q) => q.eq("groupId", groupId))
+            .collect();
+
+        for (const userGroup of userGroups) {
+            await ctx.db.delete(userGroup._id);
+        }
+
+        // Delete the group itself
+        await ctx.db.delete(groupId);
+    },
+});
