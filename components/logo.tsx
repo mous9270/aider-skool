@@ -17,7 +17,7 @@ export const Logo = ({
             <span className="text-green-500">a</span>
             <span className="text-yellow-500">y</span>
             <span className="text-purple-500">t</span>
-            <span className="text-purple-500">o</span>
+            <span className="text-pink-500">o</span>
         </div>
     );
 }

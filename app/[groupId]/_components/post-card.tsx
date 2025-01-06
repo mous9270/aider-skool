@@ -1,11 +1,9 @@
 import React from 'react';
-import { Avatar } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { api } from "@/convex/_generated/api";
 import { Doc } from "@/convex/_generated/dataModel";
 import { useApiMutation } from "@/hooks/use-api-mutation";
 import { cn } from "@/lib/utils";
-import { AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { useQuery } from "convex/react";
 import { formatDistanceToNow } from "date-fns";
 import { MessageSquare, PenBox, ThumbsUp, Trash2 } from "lucide-react";
@@ -70,19 +68,11 @@ export const PostCard = ({
             {/* Author Information */}
             <div className="px-6 pt-6 pb-4">
                 <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                        <Avatar className="h-10 w-10">
-                            <AvatarImage src={post.author.profileUrl || '/default-avatar.png'} />
-                            <AvatarFallback className="bg-gradient-to-r from-blue-500 to-blue-600 text-white flex items-center justify-center text-base font-medium">
-                                {post.author.name.charAt(0).toUpperCase()}
-                            </AvatarFallback>
-                        </Avatar>
-                        <div>
-                            <p className="font-semibold text-neutral-900">
-                                {post.author.name}
-                            </p>
-                            <p className="text-xs text-neutral-500">{timeAgo} ago</p>
-                        </div>
+                    <div>
+                        <p className="font-semibold text-neutral-900">
+                            {post.author.name}
+                        </p>
+                        <p className="text-xs text-neutral-500">{timeAgo} ago</p>
                     </div>
                     {isOwner && (
                         <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
