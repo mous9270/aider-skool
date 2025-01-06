@@ -50,7 +50,7 @@ export const LessonEditorView = ({ lesson }: LessonEditorViewProps) => {
             <Input placeholder="YouTube Video URL" value={videoUrl} onChange={(e) => setVideoUrl(e.target.value)} />
             <div className="flex flex-col">
                 <p className="text-xs text-zinc-500">Muse be embed link, not a normal link. Go to Share video &gt; Embed and copy the link from IFrame.</p>
-                <p className="text-xs text-zinc-500">Example: https://www.youtube.com/embed/TalBbvAhdIY?si=lFIwtjTGxE5AgZHe</p>
+                <p className="text-xs text-zinc-500">Example: https://www.youtube.com/embed/g4rh_pKgUiY?si=gZ6EyvkUCFLz3W0w</p>
             </div>
             <AspectRatio ratio={16 / 9}>
                 <iframe width="100%" height="100%" src={videoUrl} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"></iframe>
