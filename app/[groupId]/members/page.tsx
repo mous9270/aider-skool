@@ -4,6 +4,9 @@ import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { useQuery } from "convex/react";
 import { useState, useEffect } from "react";
+import { toast } from "sonner";
+import { useApiMutation } from "@/hooks/use-api-mutation";
+import { Button } from "@/components/ui/button";
 import { MemberCard } from "./_components/member-card";
 import { AddMember } from "./_components/add-member";
 
@@ -28,6 +31,8 @@ const MebersPage = ({
         }
     }, [members, currentUser]);
 
+    const { mutate: deleteMember } = useApiMutation(api.users.removeFromGroup);
+    
     if (!authorized) {
         return <div>You do not have access to this group.</div>;
     }
@@ -38,17 +43,30 @@ const MebersPage = ({
         // Logic to add a new member
     };
 
-    const handleDeleteMember = (memberId) => {
-        // Logic to delete a member
+    const handleDeleteMember = async (memberId: string) => {
+        try {
+            await deleteMember({
+                groupId: params.groupId,
+                userId: memberId as Id<"users">
+            });
+            toast.success("Member removed successfully");
+        } catch (error) {
+            toast.error("Failed to remove member");
+        }
     };
 
     return (
         <div>
-            {(isOwner &&
+            {isOwner && (
                 <AddMember groupId={params.groupId} onAddMember={handleAddMember} />
             )}
             {members.map((member) => (
-                <MemberCard key={member._id} member={member} onDeleteMember={handleDeleteMember} />
+                <MemberCard 
+                    key={member._id} 
+                    member={member} 
+                    onDeleteMember={handleDeleteMember}
+                    canDelete={isOwner && member._id !== currentUser?._id}
+                />
             ))}
         </div>
     )

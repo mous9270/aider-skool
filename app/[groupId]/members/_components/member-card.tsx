@@ -5,13 +5,18 @@ import { useQuery } from "convex/react";
 import { useParams } from "next/navigation";
 import { format } from "date-fns";
 import { Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface MemberCardProps {
     member: Doc<"users">;
+    onDeleteMember: (memberId: string) => void;
+    canDelete: boolean;
 }
 
 export const MemberCard = ({
-    member
+    member,
+    onDeleteMember,
+    canDelete
 }: MemberCardProps) => {
     const { groupId } = useParams();
     const group = useQuery(api.groups.get, { id: groupId as Id<"groups"> });
@@ -35,6 +40,15 @@ export const MemberCard = ({
                     <Calendar className="w-4 h-4" />
                     <span className=" text-sm">Joined {formattedDate}</span>
                 </div>
+                {canDelete && (
+                    <Button 
+                        onClick={() => onDeleteMember(member._id)}
+                        variant="destructive"
+                        size="sm"
+                    >
+                        Remove
+                    </Button>
+                )}
             </div>
         </div>
     );

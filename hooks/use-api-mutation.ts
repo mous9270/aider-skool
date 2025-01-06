@@ -1,26 +1,22 @@
 import { useMutation } from "convex/react";
-import { useState } from "react"
+import { MutationReference } from "convex/server";
 
-export const useApiMutation = (mutationFunction: any) => {
-    const [pending, setPending] = useState(false);
+export const useApiMutation = <T extends MutationReference>(
+    mutationFunction: T
+) => {
     const apiMutation = useMutation(mutationFunction);
 
-    const mutate = (payload: any) => {
-        setPending(true);
-        return apiMutation(payload)
-            .then((result) => {
-                return result;
-            })
-            .catch((error) => {
-                throw error;
-            })
-            .finally(() => {
-                setPending(false)
-            })
+    const mutate = async (payload: Parameters<T>[0]) => {
+        try {
+            const result = await apiMutation(payload);
+            return result;
+        } catch (error) {
+            throw error;
+        }
     };
 
     return {
         mutate,
-        pending,
+        pending: apiMutation.loading
     }
 };
