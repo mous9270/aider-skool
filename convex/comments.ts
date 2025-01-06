@@ -1,5 +1,6 @@
 import { v } from "convex/values";
 import { mutation, query } from "./_generated/server";
+import { Doc } from "./_generated/dataModel";
 
 
 export const add = mutation({
@@ -51,7 +52,11 @@ export const list = query({
             })
         );
 
-        return commentsWithAuthors;
+        return commentsWithAuthors as Array<
+            Doc<"comments"> & {
+                author: Doc<"users">;
+            }
+        >;
     }
 });
 

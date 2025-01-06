@@ -39,10 +39,6 @@ const MebersPage = ({
 
     const isOwner = group?.ownerId === currentUser?._id;
 
-    const handleAddMember = (newMemberId) => {
-        // Logic to add a new member
-    };
-
     const handleDeleteMember = async (memberId: string) => {
         try {
             await deleteMember({
@@ -58,9 +54,9 @@ const MebersPage = ({
     return (
         <div>
             {isOwner && (
-                <AddMember groupId={params.groupId} onAddMember={handleAddMember} />
+                <AddMember groupId={params.groupId} />
             )}
-            {members.map((member) => (
+            {members?.map((member) => (
                 <MemberCard 
                     key={member._id} 
                     member={member} 

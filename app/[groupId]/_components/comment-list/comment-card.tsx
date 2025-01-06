@@ -7,7 +7,9 @@ import { formatDistanceToNow } from "date-fns";
 import { Trash2 } from "lucide-react";
 
 interface CommentCardProps {
-    comment: Doc<"comments">;
+    comment: Doc<"comments"> & {
+        author: Doc<"users">;
+    };
 }
 
 export const CommentCard = ({ comment }: CommentCardProps) => {

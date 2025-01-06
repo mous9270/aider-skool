@@ -14,8 +14,10 @@ import { api } from "@/convex/_generated/api";
 import { useApiMutation } from "@/hooks/use-api-mutation";
 import { useState } from "react";
 
+import { Id } from "@/convex/_generated/dataModel";
+
 interface CreatePostModalProps {
-    groupId: string;
+    groupId: Id<"groups">;
 }
 
 export const CreatePostModal = ({
