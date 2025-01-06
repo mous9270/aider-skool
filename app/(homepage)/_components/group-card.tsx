@@ -1,12 +1,11 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Button } from "@/components/ui/button";
 import { Doc } from "@/convex/_generated/dataModel";
 import { useRouter } from "next/navigation";
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 import { useApiMutation } from "@/hooks/use-api-mutation";
 import { toast } from "sonner";
-import { Trash2 } from "lucide-react";
+import { DeleteGroupModal } from "@/components/modals/delete-group-modal";
 
 interface GroupCardProps {
     group: Doc<"groups">;
@@ -61,14 +60,7 @@ export const GroupCard = ({ group }: GroupCardProps) => {
       <h2 className="text-lg font-semibold">{group.name}</h2>
       <p>{getDescription()}</p>
       {isOwner && (
-        <Button
-          onClick={handleDelete}
-          variant="destructive"
-          size="sm"
-          className="absolute top-2 right-2"
-        >
-          <Trash2 className="h-4 w-4" />
-        </Button>
+        <DeleteGroupModal onDelete={handleDelete} />
       )}
     </ScrollArea>
   );
