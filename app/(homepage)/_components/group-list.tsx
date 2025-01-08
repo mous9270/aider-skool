@@ -1,14 +1,13 @@
 import { Loading } from "@/components/auth/loading";
 import { api } from "@/convex/_generated/api";
-import { useMutation, useQuery } from "convex/react";
+import { useQuery } from "convex/react";
 import { GroupCard } from "./group-card";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 export const GroupList = () => {
-    const groups = useQuery(api.groups.listAll, {});
     const router = useRouter();
+    const groups = useQuery(api.groups.listAll, {});
 
     const handleCreate = () => {
         router.push("/create");
@@ -19,9 +18,11 @@ export const GroupList = () => {
     }
 
     if (groups.length === 0) {
-        return <div className="h-full flex items-cente justify-center">
-            <Button onClick={handleCreate}>Create a group</Button>
-        </div>;
+        return (
+            <div className="h-full flex items-center justify-center">
+                <Button onClick={handleCreate}>Create a group</Button>
+            </div>
+        );
     }
 
     return (

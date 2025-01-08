@@ -10,7 +10,7 @@ import {
     PopoverContent,
     PopoverTrigger,
 } from "@/components/ui/popover"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Id } from "@/convex/_generated/dataModel";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
@@ -26,8 +26,13 @@ export const SelectModal = () => {
         return <div>Loading...</div>;
     }
 
+    useEffect(() => {
+        if (isLoaded && !isSignedIn) {
+            router.push("/");
+        }
+    }, [isLoaded, isSignedIn, router]);
+
     if (!isSignedIn) {
-        router.push("/");
         return null;
     }
 
