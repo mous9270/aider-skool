@@ -3,6 +3,7 @@
 import { api } from "@/convex/_generated/api"
 import { useQuery } from "convex/react"
 import { ChevronDown, Compass, Plus, Sparkles, Zap } from "lucide-react";
+import { useAuth, useUser } from "@clerk/nextjs";
 
 import {
     Popover,
@@ -18,14 +19,23 @@ import { Logo } from "../logo";
 
 
 export const SelectModal = () => {
+    const { isSignedIn, isLoaded } = useAuth();
+    const router = useRouter();
+    
+    if (!isLoaded) {
+        return <div>Loading...</div>;
+    }
+
+    if (!isSignedIn) {
+        router.push("/");
+        return null;
+    }
+
     const currentUser = useQuery(api.users.currentUser, {});
     const { groupId } = useParams();
     const group = useQuery(api.groups.get, { id: groupId as Id<"groups"> });
     const groups = useQuery(api.groups.list);
-    const router = useRouter();
-
     const [openSelect, setOpenSelect] = useState(false);
-
 
     if (currentUser === undefined) {
         return <div>Loading...</div>;
