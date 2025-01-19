@@ -89,8 +89,9 @@ export const Content = ({
             <BlockNoteView
                 editor={editor}
                 editable={editable}
-                theme="light"
+                theme={"dark"}
                 onChange={handleChange}
+                className="dark:!bg-transparent [&_.bn-editor]:!bg-transparent [&_.bn-editor]:dark:!text-foreground [&_.bn-container]:!bg-transparent"
             />
         </div>
     );
