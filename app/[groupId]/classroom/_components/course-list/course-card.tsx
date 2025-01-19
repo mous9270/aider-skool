@@ -25,7 +25,7 @@ export const CourseCard = ({
     }
     return (
         <div
-            className="h-fit w-[360px] rounded-xl cursor-pointer bg-zinc-100 hover:shadow-[0_2px_2px_2px_rgba(0,0,0,0.3)]"
+            className="h-fit w-[360px] rounded-xl cursor-pointer bg-zinc-100 dark:bg-zinc-900 hover:shadow-[0_2px_2px_2px_rgba(0,0,0,0.3)] dark:hover:shadow-[0_2px_2px_2px_rgba(255,255,255,0.1)]"
             onClick={handleClick}
         >
             <div className="h-[200px] relative">

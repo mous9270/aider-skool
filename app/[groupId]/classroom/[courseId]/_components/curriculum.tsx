@@ -69,7 +69,7 @@ export const Curriculum = ({ course, groupId }: CurriculumProps) => {
                 ))}
 
             </div>
-            <div className="flex-grow md:w-3/4 rounded-xl bg-gray-50 shadow-md p-4">
+            <div className="flex-grow md:w-3/4 rounded-xl bg-gray-50 dark:bg-zinc-900 shadow-md p-4">
                 {selectedLesson && <LessonView lesson={selectedLesson} />}
             </div>
         </div>

@@ -61,8 +61,8 @@ export const PostCard = ({
         <div
             onClick={handlePostClick}
             className={cn(
-                "bg-card rounded-lg border shadow-sm",
-                isPreview && "cursor-pointer hover:border-accent hover:shadow-md",
+                "bg-card rounded-lg border shadow-sm dark:bg-zinc-900",
+                isPreview && "cursor-pointer hover:border-accent hover:shadow-md dark:hover:border-zinc-700",
                 "transition-all duration-200",
                 className
             )}

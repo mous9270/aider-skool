@@ -59,13 +59,13 @@ export const NameEditor = ({
                     onKeyDown={onKeyDown}
                     value={value}
                     onChange={(e) => onInput(e.target.value)}
-                    className="w-full text-5xl bg-transparent font-bold break-words outline-none text-[#3F3F3F]"
+                    className="w-full text-5xl bg-transparent font-bold break-words outline-none text-foreground"
                     maxLength={60}
                 />
             ) : (
                 <div
                     onClick={enableInput}
-                    className="pb-[11.5px] text-5xl font-bold break-words outline-none text-[#3F3F3F]"
+                    className="pb-[11.5px] text-5xl font-bold break-words outline-none text-foreground"
                 >
                     {name}
                 </div>

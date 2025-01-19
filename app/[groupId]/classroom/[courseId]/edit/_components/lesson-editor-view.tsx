@@ -41,7 +41,7 @@ export const LessonEditorView = ({ lesson }: LessonEditorViewProps) => {
     }
 
     return (
-        <div className="space-y-4 p-4 rounded-lg border border-neutral-300 ">
+        <div className="space-y-4 p-4 rounded-lg border border-neutral-300 dark:border-zinc-700">
             <div className="flex items-center mb-6 space-x-3">
                 <CaseSensitive className="text-zinc-500" />
                 <Input placeholder="Title" value={title} onChange={(e) => setTitle(e.target.value)} />

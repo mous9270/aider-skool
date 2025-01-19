@@ -25,7 +25,7 @@ export const MemberCard = ({
 
 
     return (
-        <div className="flex items-start gap-x-7 bg-neutral-50 px-96 py-10">
+        <div className="flex items-start gap-x-7 bg-neutral-50 dark:bg-zinc-900 px-96 py-10">
             <Avatar>
                 <AvatarImage src={member.profileUrl} />
                 <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>

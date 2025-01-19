@@ -21,7 +21,7 @@ const Group = ({ params }: ChatPageProps) => {
         return <div>You do not have access to this group.</div>;
     }
     return (
-        <div className="w-full h-full bg-neutral-200 py-12">
+        <div className="w-full h-full bg-background py-12">
             <About groupId={params.groupId} />
         </div>
     );

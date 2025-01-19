@@ -13,11 +13,35 @@ export const GroupNavbar = () => {
     }
 
     return (
-        <div className="flex w-full h-[50px] items-center justify-start bg-neutral-100 px-96">
-            <Button variant={"ghost"} onClick={() => router.push(`/${groupId}`)}>Group</Button>
-            <Button variant={"ghost"} onClick={() => router.push(`/${groupId}/classroom`)}>Classroom</Button>
-            <Button variant={"ghost"} onClick={() => router.push(`/${groupId}/members`)}>Members</Button>
-            <Button variant={"ghost"} onClick={() => router.push(`/${groupId}/about`)}>About</Button>
+        <div className="flex w-full h-[50px] items-center justify-start border-b bg-background px-96">
+            <Button 
+                variant={"ghost"} 
+                onClick={() => router.push(`/${groupId}`)}
+                className="text-muted-foreground hover:text-foreground"
+            >
+                Group
+            </Button>
+            <Button 
+                variant={"ghost"} 
+                onClick={() => router.push(`/${groupId}/classroom`)}
+                className="text-muted-foreground hover:text-foreground"
+            >
+                Classroom
+            </Button>
+            <Button 
+                variant={"ghost"} 
+                onClick={() => router.push(`/${groupId}/members`)}
+                className="text-muted-foreground hover:text-foreground"
+            >
+                Members
+            </Button>
+            <Button 
+                variant={"ghost"} 
+                onClick={() => router.push(`/${groupId}/about`)}
+                className="text-muted-foreground hover:text-foreground"
+            >
+                About
+            </Button>
         </div>
     )
 }

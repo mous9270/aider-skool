@@ -56,7 +56,7 @@ export const DescriptionEditor = ({
         <BlockNoteView
             editor={editor}
             editable={editable}
-            theme="light"
+            theme={"dark"}
             onChange={handleChange}
             className={className}
         />
