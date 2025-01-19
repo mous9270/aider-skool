@@ -51,7 +51,7 @@ export const CreatePostModal = ({
         <div className="w-full">
             <Dialog>
                 <DialogTrigger className="flex w-full justify-start">
-                    <div className="w-full shadow-[1px_1px_2px_2px_rgba(0,0,0,0.2)] p-4 text-neutral-500 rounded-md bg-white font-semibold text-md text-start px-6">Write something</div>
+                    <div className="w-full shadow-sm border p-4 text-muted-foreground rounded-md bg-background font-semibold text-md text-start px-6 hover:bg-accent/50 transition">Write something</div>
                 </DialogTrigger>
                 <DialogContent>
                     <DialogHeader>

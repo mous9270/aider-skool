@@ -61,9 +61,9 @@ export const PostCard = ({
         <div
             onClick={handlePostClick}
             className={cn(
-                "bg-white rounded-lg border border-neutral-200",
-                isPreview && "cursor-pointer hover:border-neutral-300",
-                "transition-colors",
+                "bg-card rounded-lg border shadow-sm",
+                isPreview && "cursor-pointer hover:border-accent hover:shadow-md",
+                "transition-all duration-200",
                 className
             )}
         >
@@ -71,10 +71,10 @@ export const PostCard = ({
             <div className="px-6 pt-6 pb-4">
                 <div className="flex items-center justify-between">
                     <div>
-                        <p className="font-semibold text-neutral-900">
+                        <p className="font-semibold text-foreground">
                             {post.author.name}
                         </p>
-                        <p className="text-xs text-neutral-500">{timeAgo} ago</p>
+                        <p className="text-xs text-muted-foreground">{timeAgo} ago</p>
                     </div>
                     {isOwner && (
                         <div className="flex items-center gap-2" onClick={(e) => e.stopPropagation()}>
@@ -87,7 +87,7 @@ export const PostCard = ({
                                     "p-2 rounded-full transition-colors",
                                     isEditing 
                                         ? "bg-blue-100 hover:bg-blue-200" 
-                                        : "hover:bg-neutral-100"
+                                        : "hover:bg-accent"
                                 )}
                             >
                                 <PenBox className={cn(
@@ -108,7 +108,7 @@ export const PostCard = ({
 
             {/* Post Content */}
             <div className="px-6 pb-4">
-                <h2 className="text-lg font-semibold text-neutral-900 mb-2">
+                <h2 className="text-lg font-semibold text-foreground mb-2">
                     {post.title}
                 </h2>
                 <ScrollArea className={cn("max-h-[280px]", isPreview && "max-h-[120px]")}>
@@ -116,7 +116,7 @@ export const PostCard = ({
                         postId={post._id}
                         initialContent={post.content}
                         editable={isOwner && isEditing}
-                        className="text-neutral-700 text-sm"
+                        className="text-muted-foreground text-sm"
                     />
                 </ScrollArea>
                 {isEditing && (
@@ -126,7 +126,7 @@ export const PostCard = ({
                                 e.stopPropagation();
                                 setIsEditing(false);
                             }}
-                            className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors"
+                            className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:opacity-90 transition-colors"
                         >
                             Publish
                         </button>
@@ -140,12 +140,12 @@ export const PostCard = ({
             <div className="px-6 py-3 flex items-center gap-6" onClick={(e) => e.stopPropagation()}>
                 <button
                     onClick={handleLike}
-                    className="flex items-center gap-2 hover:text-blue-600 text-neutral-600 transition-colors"
+                    className="flex items-center gap-2 hover:text-primary text-muted-foreground transition-colors"
                 >
                     <ThumbsUp className="w-5 h-5" />
                     <span className="text-sm font-medium">{likeCount}</span>
                 </button>
-                <div className="flex items-center gap-2 text-neutral-600">
+                <div className="flex items-center gap-2 text-muted-foreground">
                     <MessageSquare className="w-5 h-5" />
                     <span className="text-sm font-medium">{commentCount}</span>
                 </div>

@@ -40,7 +40,7 @@ export const About = ({
 
     return (
         <div className="flex items-start justify-center space-x-12 w-full">
-            <div className="max-w-[650px] bg-white p-8 rounded-lg border border-neutral-200 space-y-10">
+            <div className="max-w-[650px] bg-card p-8 rounded-lg border space-y-10">
                 <h1 className="font-bold text-2xl">{group.name}</h1>
                 {group.aboutUrl && (
                     <>

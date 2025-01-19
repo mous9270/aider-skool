@@ -43,7 +43,7 @@ const Community = ({ params }: ChatPageProps) => {
     const membersText = group.memberNumber === 1 ? "Member" : "Members";
 
     return (
-        <div className="flex w-full h-full py-12 px-4 gap-8">
+        <div className="flex w-full h-full py-12 px-4 gap-8 bg-background">
             <div className="w-full space-y-6">
                 <CreatePostModal groupId={params.groupId} />
                 <div className="space-y-6 flex flex-col">

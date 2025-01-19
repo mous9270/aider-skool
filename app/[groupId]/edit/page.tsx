@@ -41,7 +41,7 @@ const EditPage = ({
 
     return (
         <div className="flex items-start justify-center space-x-12 w-full">
-            <div className="max-w-[650px] bg-white p-8 rounded-lg border border-neutral-200 space-y-10">
+            <div className="max-w-[650px] bg-card p-8 rounded-lg border space-y-10">
                 <NameEditor id={group._id} name={group.name} />
                 {group.aboutUrl && (
                     <>
@@ -62,7 +62,7 @@ const EditPage = ({
                     initialContent={group.description}
                 />
             </div>
-            <div className="max-w-[350px] w-full bg-white space-y-4 p-8 rounded-lg border border-neutral-200">
+            <div className="max-w-[350px] w-full bg-card space-y-4 p-8 rounded-lg border">
                 <h1 className="font-bold text-xl">{group.name}</h1>
                 <p className="flex font-light text-xs items-center text-neutral-400 gap-x-2"><Lock className="w-4 h-4" /> Private group</p>
                 <p>{group.shortDescription}</p>
