@@ -16,11 +16,11 @@ export const AboutSide = ({
     membersText
 }: AboutSideProps) => {
     return (
-        <div className="max-w-[350px] w-full bg-white space-y-4 p-8 rounded-lg border border-neutral-200">
-            <h1 className="font-bold text-xl">{group.name}</h1>
-            <p className="flex font-light text-xs items-center text-neutral-400 gap-x-2"><Lock className="w-4 h-4" /> Private group</p>
-            <p>{group.shortDescription}</p>
-            <p className="text-neutral-400">{membersText}</p>
+        <div className="max-w-[350px] w-full bg-card space-y-4 p-8 rounded-lg border">
+            <h1 className="font-bold text-xl text-foreground">{group.name}</h1>
+            <p className="flex font-light text-xs items-center text-muted-foreground gap-x-2"><Lock className="w-4 h-4" /> Private group</p>
+            <p className="text-foreground">{group.shortDescription}</p>
+            <p className="text-muted-foreground">{membersText}</p>
             {currentUser?._id !== group.ownerId && (
                 <Button className="w-full">Join</Button>
             )}
