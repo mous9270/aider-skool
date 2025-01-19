@@ -55,7 +55,7 @@ export const GroupCard = ({ group }: GroupCardProps) => {
   return (
     <ScrollArea 
       onClick={handleClick} 
-      className="bg-white rounded-lg shadow-lg p-4 w-80 max-h-[350px] overflow-auto cursor-pointer relative"
+      className="bg-card rounded-lg shadow-lg p-4 w-80 max-h-[350px] overflow-auto cursor-pointer relative hover:opacity-75 transition border"
     >
       <h2 className="text-lg font-semibold">{group.name}</h2>
       <p>{getDescription()}</p>

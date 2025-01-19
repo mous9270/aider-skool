@@ -96,17 +96,17 @@ export const SelectModal = () => {
                     )}
                     <ChevronDown className="w-5 h-5" />
                 </PopoverTrigger>
-                <PopoverContent className="flex flex-col border-0 p-3 space-y-4 font-semibold" align="center">
-                    <div className="flex gap-x-2 items-center cursor-pointer hover:bg-zinc-100 p-2 rounded-md" onClick={handleCreate}>
+                <PopoverContent className="flex flex-col border-0 p-3 space-y-4 font-semibold bg-background" align="center">
+                    <div className="flex gap-x-2 items-center cursor-pointer hover:bg-accent p-2 rounded-md" onClick={handleCreate}>
                         <Plus className="w-7 h-7" />
                         <p>Create a group</p>
                     </div>
-                    <div className="flex gap-x-2 items-center cursor-pointer hover:bg-zinc-100 p-2 rounded-md" onClick={handleDiscover}>
+                    <div className="flex gap-x-2 items-center cursor-pointer hover:bg-accent p-2 rounded-md" onClick={handleDiscover}>
                         <Compass className="w-7 h-7" />
                         <p>Discover groups</p>
                     </div>
                     {groups?.map((group) => (
-                        <div className="flex gap-x-2 items-center cursor-pointer hover:bg-zinc-100 p-2 rounded-md" key={group._id} onClick={() => handleSelect(group._id)}>
+                        <div className="flex gap-x-2 items-center cursor-pointer hover:bg-accent p-2 rounded-md" key={group._id} onClick={() => handleSelect(group._id)}>
                             <Avatar className="w-7 h-7">
                                 <AvatarImage src="https://avatars.githubusercontent.com/u/124599?v=4" />
                                 <AvatarFallback>
